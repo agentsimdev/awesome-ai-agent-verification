@@ -47,6 +47,17 @@ Providers that offer actual SIM-backed mobile numbers (pass carrier lookup as "m
 | [5SIM](https://5sim.net) | Per-use | ❌ | REST | Multiple | Mix of real and virtual numbers |
 | [SMSPool](https://www.smspool.net) | Per-use | ❌ | REST | Multiple | Marketplace model, quality varies |
 
+## Agent Phone Platforms
+
+Full phone infrastructure for AI agents (calls + SMS, not verification-focused):
+
+| Provider | Pricing | Features | Verification? |
+|----------|---------|----------|--------------|
+| [AgentPhone](https://agentphone.to) | Free to start | Voice + SMS webhook, real-time transcription, MCP | ⚠️ Numbers likely fail carrier lookup |
+| [Vapi](https://vapi.ai) | Per-minute | Voice AI agents, low latency | No verification focus |
+| [Bland AI](https://bland.ai) | Per-minute | Enterprise phone agents | No verification focus |
+| [Retell AI](https://retellai.com) | Per-minute | Conversational voice AI | No verification focus |
+
 ## VoIP / Virtual Number APIs
 
 ⚠️ These provide VoIP numbers that may be blocked by major services:

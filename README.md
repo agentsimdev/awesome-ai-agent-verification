@@ -103,7 +103,7 @@ Model Context Protocol servers for phone verification in Claude, Cursor, and oth
 
 | Server | Provider | Tools | Description |
 |--------|----------|-------|-------------|
-| [AgentSIM MCP](https://github.com/Fato07/agentsim) | AgentSIM | `provision_number`, `wait_for_otp`, `release_number` | Real SIM numbers via MCP |
+| [AgentSIM MCP](https://github.com/agentsimdev/agentsim) | AgentSIM | `provision_number`, `wait_for_otp`, `release_number` | Real SIM numbers via MCP |
 
 ## Browser Automation + Verification
 

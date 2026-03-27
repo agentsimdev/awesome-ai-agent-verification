@@ -11,6 +11,7 @@ AI agents increasingly need phone verification to create accounts, pass 2FA, and
 - [VoIP / Virtual Number APIs](#voip--virtual-number-apis)
 - [Open Source Libraries](#open-source-libraries)
 - [MCP Servers](#mcp-servers)
+- [SDKs & Client Libraries](#sdks--client-libraries)
 - [Browser Automation + Verification](#browser-automation--verification)
 - [OTP / 2FA Libraries](#otp--2fa-libraries)
 - [Temporary Number Services](#temporary-number-services)
@@ -41,11 +42,12 @@ Providers that offer actual SIM-backed mobile numbers (pass carrier lookup as "m
 | Provider | Pricing | MCP Support | API | Countries | Notes |
 |----------|---------|-------------|-----|-----------|-------|
 | [AgentSIM](https://agentsim.dev) | $0.99/session | ✅ Native | REST + SDK | US | Real T-Mobile SIM, built for AI agents, 10 free/month |
-| [VoidMob](https://voidmob.com) | $19.99/mo | ❌ | REST | US, UK | Dedicated numbers, monthly subscription |
+| [VoidMob](https://voidmob.com) | $0.15+/SMS | ✅ MCP | REST | US, UK | Real 4G/5G carrier SIMs, per-use pricing, also offers proxies + eSIMs |
 | [JoltSMS](https://joltsms.com) | $50/mo+ | ❌ | REST | US | Enterprise focused, higher volume |
 | [GetSMSCode](https://getsmscode.com) | Per-use | ❌ | REST | Multiple | Physical SIM bank, variable availability |
 | [5SIM](https://5sim.net) | Per-use | ❌ | REST | Multiple | Mix of real and virtual numbers |
 | [SMSPool](https://www.smspool.net) | Per-use | ❌ | REST | Multiple | Marketplace model, quality varies |
+| [VirtualSMS](https://virtualsms.io) | $0.05+/use | ✅ Native MCP | REST + WebSocket | 145+ | Real SIM cards, 700+ services, WebSocket push OTP delivery |
 
 ## Agent Phone Platforms
 
@@ -79,13 +81,13 @@ Full phone infrastructure for AI agents (calls + SMS, not verification-focused):
 | Repository | Stars | Language | Description |
 |-----------|-------|----------|-------------|
 | [transitive-bullshit/sms-number-verifier](https://github.com/transitive-bullshit/sms-number-verifier) | 215 | JavaScript | SMS verification for automated systems |
-| [Shelex/free-otp-api](https://github.com/Shelex/free-otp-api) | 32 | TypeScript | Aggregates free phone numbers for OTP testing |
+| [Shelex/free-otp-api](https://github.com/Shelex/free-otp-api) | 20 | TypeScript | Aggregates free phone numbers for OTP testing |
 
 ### OTP Servers
 
 | Repository | Stars | Language | Description |
 |-----------|-------|----------|-------------|
-| [knadh/otpgateway](https://github.com/knadh/otpgateway) | 520 | Go | Standalone OTP verification with pluggable providers |
+| [knadh/otpgateway](https://github.com/knadh/otpgateway) | 463 | Go | Standalone OTP verification with pluggable providers |
 | [CuriousLearner/django-phone-verify](https://github.com/CuriousLearner/django-phone-verify) | 292 | Python | Django phone verification via SMS |
 | [TheBund1st/daming](https://github.com/TheBund1st/daming) | 94 | Java | SMS verification for Spring Boot |
 
@@ -93,9 +95,15 @@ Full phone infrastructure for AI agents (calls + SMS, not verification-focused):
 
 | Repository | Stars | Language | Description |
 |-----------|-------|----------|-------------|
-| [faizalshap/react-native-otp-verify](https://github.com/faizalshap/react-native-otp-verify) | 286 | Java | React Native SMS verification |
+| [faizalshap/react-native-otp-verify](https://github.com/faizalshap/react-native-otp-verify) | 278 | Java | React Native SMS verification |
 | [kfit-dev/OTPTextField](https://github.com/kfit-dev/OTPTextField) | 67 | Obj-C | iOS OTP input field |
-| [pushpalroy/ComposeOtpVerify](https://github.com/pushpalroy/ComposeOtpVerify) | 63 | Kotlin | Android Jetpack Compose OTP |
+| [pushpalroy/ComposeOtpVerify](https://github.com/pushpalroy/ComposeOtpVerify) | 55 | Kotlin | Android Jetpack Compose OTP |
+
+### TOTP / Authenticator Libraries
+
+| Repository | Stars | Language | Description |
+|-----------|-------|----------|-------------|
+| [pyauth/pyotp](https://github.com/pyauth/pyotp) | 3.3K | Python | TOTP/HOTP one-time password library. RFC 4226/6238. Google Authenticator compatible. |
 
 ## MCP Servers
 
@@ -103,7 +111,19 @@ Model Context Protocol servers for phone verification in Claude, Cursor, and oth
 
 | Server | Provider | Tools | Description |
 |--------|----------|-------|-------------|
-| [AgentSIM MCP](https://github.com/agentsimdev/agentsim) | AgentSIM | `provision_number`, `wait_for_otp`, `release_number` | Real SIM numbers via MCP |
+| [AgentSIM MCP](https://github.com/agentsimdev/agentsim-mcp) | AgentSIM | `provision_number`, `wait_for_otp`, `get_messages`, `release_number`, `list_numbers` | Real SIM numbers via MCP — Claude Code, Cursor, Windsurf. Remote option via `mcp.agentsim.dev` |
+| [JoltSMS MCP](https://github.com/rchanllc/joltsms-mcp-server) | JoltSMS (community) | `joltsms_provision_number`, `joltsms_wait_for_sms`, `joltsms_get_latest_otp` | Community MCP wrapper for JoltSMS real-SIM numbers |
+| [VirtualSMS MCP](https://github.com/virtualsms-io/mcp-server) | VirtualSMS | `buy_number`, `wait_for_code`, `check_sms`, `cancel_order`, `swap_number` | Real SIM, 145+ countries, WebSocket push OTP |
+
+## SDKs & Client Libraries
+
+Official client libraries for programmatic phone verification in AI agents:
+
+| Library | Language | Install | Description |
+|---------|----------|---------|-------------|
+| [agentsim-python](https://github.com/agentsimdev/agentsim-python) | Python | `pip install agentsim-sdk` | Async/sync context managers, auto-reroute, webhook support |
+| [agentsim-typescript](https://github.com/agentsimdev/agentsim-typescript) | TypeScript | `npm install @agentsim/sdk` | Zero dependencies. Node.js 18+, Bun, Deno, Edge runtimes |
+| [agentsim-mcp](https://github.com/agentsimdev/agentsim-mcp) | Python | `uvx agentsim-mcp` | MCP server for Claude Code, Cursor, Windsurf. Remote option at `mcp.agentsim.dev` |
 
 ## Browser Automation + Verification
 
@@ -111,11 +131,14 @@ Tools for combining browser automation with phone verification:
 
 | Tool | Stars | Description | Phone Support |
 |------|-------|-------------|--------------|
-| [browser-use](https://github.com/browser-use/browser-use) | 81K+ | AI browser automation | Needs external phone provider |
-| [Notte](https://github.com/nottelabs/notte) | 1.7K | Stealth browser for agents | Built-in personas, VoIP numbers |
-| [Skyvern](https://github.com/Skyvern-AI/skyvern) | 10K+ | CV+LLM browser automation | No native phone support |
-| [Playwright](https://github.com/microsoft/playwright) | 68K+ | Cross-browser automation | No native phone support |
-| [Puppeteer](https://github.com/puppeteer/puppeteer) | 88K+ | Chrome automation | No native phone support |
+| [Puppeteer](https://github.com/puppeteer/puppeteer) | 94K+ | Chrome/Firefox automation | No native phone support |
+| [Playwright](https://github.com/microsoft/playwright) | 85K+ | Cross-browser automation | No native phone support |
+| [browser-use](https://github.com/browser-use/browser-use) | 84.8K+ | AI browser automation | Needs external phone provider |
+| [Stagehand](https://github.com/browserbase/stagehand) | 21.7K | AI-native browser automation — `act()`, `extract()`, `observe()`. CDP-based v3. | Needs external phone provider |
+| [Skyvern](https://github.com/Skyvern-AI/skyvern) | 21K+ | CV+LLM browser automation | No native phone support |
+| [Steel](https://github.com/steel-dev/steel-browser) | 6.7K | Open source browser sandbox. Session management, proxy rotation, stealth. | No native phone support |
+| [agent-browser](https://github.com/vercel-labs/agent-browser) | 6.2K | Headless browser CLI for AI agents. Accessibility-tree snapshots. Rust+Node.js. | No native phone support |
+| [Notte](https://github.com/nottelabs/notte) | 1.9K | Stealth browser for agents | Built-in personas, VoIP numbers |
 
 ## Temporary Number Services
 

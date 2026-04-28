@@ -46,6 +46,7 @@ Providers that offer actual SIM-backed mobile numbers (pass carrier lookup as "m
 | [JoltSMS](https://joltsms.com) | $50/mo+ | ❌ | REST | US | Enterprise focused, higher volume |
 | [GetSMSCode](https://getsmscode.com) | Per-use | ❌ | REST | Multiple | Physical SIM bank, variable availability |
 | [5SIM](https://5sim.net) | Per-use | ❌ | REST | Multiple | Mix of real and virtual numbers |
+| [VerifySMS](https://verifysms.app) | $0.10–$5/number | ❌ | REST | 200+ | Multi-provider routing (real UK SIM farm + premium non-VoIP), iOS/Android/web, automatic refunds within 20 minutes if SMS fails, 5.0★ on App Store across US/GB/TR/DE |
 | [SMSPool](https://www.smspool.net) | Per-use | ❌ | REST | Multiple | Marketplace model, quality varies |
 | [VirtualSMS](https://virtualsms.io) | $0.05+/use | ✅ Native MCP | REST + WebSocket | 145+ | Real SIM cards, 700+ services, WebSocket push OTP delivery |
 

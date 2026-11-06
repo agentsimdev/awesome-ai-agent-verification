@@ -47,6 +47,7 @@ Providers that offer actual SIM-backed mobile numbers (pass carrier lookup as "m
 | [GetSMSCode](https://getsmscode.com) | Per-use | ❌ | REST | Multiple | Physical SIM bank, variable availability |
 | [5SIM](https://5sim.net) | Per-use | ❌ | REST | Multiple | Mix of real and virtual numbers |
 | [SMSPool](https://www.smspool.net) | Per-use | ❌ | REST | Multiple | Marketplace model, quality varies |
+| [SMSPing](https://smsping.net/?utm_source=awesome-ai-agent-verification&utm_medium=directory&utm_campaign=backlinks) | Per-use (crypto, min $10) | ❌ | REST (SMS-Activate compatible) | 150+ | Crypto-paid virtual numbers (USDT/TRX/ETH/BNB), 1,300+ services; API docs https://smsping.net/sms-activate-api/?utm_source=awesome-ai-agent-verification&utm_medium=directory&utm_campaign=backlinks |
 | [VirtualSMS](https://virtualsms.io) | $0.05+/use | ✅ Native MCP | REST + WebSocket | 145+ | Real SIM cards, 700+ services, WebSocket push OTP delivery |
 
 ## Agent Phone Platforms
